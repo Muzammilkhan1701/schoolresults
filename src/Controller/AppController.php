@@ -44,6 +44,8 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('Flash');
+        $this->loadComponent('Authentication.Authentication');
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -58,5 +60,9 @@ class AppController extends Controller
 
         // Allow access to the landing page action without authentication
        // $this->Authentication->addUnauthenticatedActions(['display']);
+    
+       // for all controllers in our application, make index and view
+    // actions public, skipping the authentication check
+    $this->Authentication->addUnauthenticatedActions(['index', 'view','add']);
     }
 }
