@@ -14,7 +14,7 @@
     </aside>
     <div class="column column-80">
         <div class="finalresults form content">
-            <?= $this->Form->create($finalresult) ?>
+            <?= $this->Form->create($finalResult) ?>
             <fieldset>
                 <legend><?= __('Add Finalresult') ?></legend>
                 <?php

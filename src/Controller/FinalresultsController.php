@@ -16,15 +16,16 @@ class FinalresultsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      */
     
-    public function index()
+     public function index()
 {
-    $this->paginate = [
-        'contain' => ['Students'], // Ensure this is correctly fetching associated data
-    ];
+    // Simple pagination without any contain
     $finalResults = $this->paginate($this->Finalresults);
 
+    // Pass the results to the view
     $this->set(compact('finalResults'));
 }
+
+     
 
 
     /**
