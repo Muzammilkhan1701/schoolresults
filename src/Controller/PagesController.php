@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -31,6 +32,14 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->setLayout('home');
+
+        // Allow access to the landing page action without authentication
+       // $this->Authentication->addUnauthenticatedActions(['display']);
+    }
     /**
      * Displays a view
      *
@@ -45,6 +54,8 @@ class PagesController extends AppController
      */
     public function display(string ...$path): ?Response
     {
+        // $this->viewBuilder()->setLayout('home');
+
         if (!$path) {
             return $this->redirect('/');
         }
