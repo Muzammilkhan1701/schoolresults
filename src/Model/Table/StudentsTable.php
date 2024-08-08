@@ -41,13 +41,13 @@ class StudentsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('term1', [
+        $this->hasMany('Term1', [
             'foreignKey' => 'student_id',
         ]);
-        $this->hasMany('term2', [
+        $this->hasMany('Term2', [
             'foreignKey' => 'student_id',
         ]);
-        $this->hasMany('finalresults', [
+        $this->hasMany('Finalresults', [
             'foreignKey' => 'student_id',
         ]);
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Finalresult> $finalresults
+ * @var iterable<\App\Model\Entity\Finalresult> $finalResults
  */
 ?>
 <div class="finalresults index content">
@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('Student_id') ?></th>
+                    <th><?= $this->Paginator->sort('student_id', 'Student') ?></th>
                     <th><?= $this->Paginator->sort('term1_total') ?></th>
                     <th><?= $this->Paginator->sort('term2_total') ?></th>
                     <th><?= $this->Paginator->sort('final_total') ?></th>
@@ -21,18 +21,20 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($finalresults as $finalresult): ?>
+                <?php foreach ($finalResults as $finalResult): ?>
                 <tr>
-                    <td><?= $this->Number->format($finalresult->id) ?></td>
-                    <td><?= $finalresult->hasValue('student') ? $this->Html->link($finalresult->student->name, ['controller' => 'Students', 'action' => 'view', $finalresult->student->id]) : '' ?></td>
-                    <td><?= $this->Number->format($finalresult->term1_total) ?></td>
-                    <td><?= $this->Number->format($finalresult->term2_total) ?></td>
-                    <td><?= $this->Number->format($finalresult->final_total) ?></td>
-                    <td><?= $this->Number->format($finalresult->final_percentage) ?></td>
+                    <td><?= $this->Number->format($finalResult->id) ?></td>
+                    
+                    <td><?= $finalResult->has('student') ? $this->Html->link($finalResult->student->name, ['controller' => 'Students', 'action' => 'view', $finalResult->student->id]) : '' ?></td>
+
+                    <td><?= $this->Number->format($finalResult->term1_total) ?></td>
+                    <td><?= $this->Number->format($finalResult->term2_total) ?></td>
+                    <td><?= $this->Number->format($finalResult->final_total) ?></td>
+                    <td><?= $this->Number->format($finalResult->final_percentage) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $finalresult->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $finalresult->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $finalresult->id], ['confirm' => __('Are you sure you want to delete # {0}?', $finalresult->id)]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $finalResult->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $finalResult->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $finalResult->id], ['confirm' => __('Are you sure you want to delete # {0}?', $finalResult->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

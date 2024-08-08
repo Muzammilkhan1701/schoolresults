@@ -15,14 +15,17 @@ class FinalresultsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    
     public function index()
-    {
-        $query = $this->Finalresults->find()
-            ->contain(['Students']);
-        $finalresults = $this->paginate($query);
+{
+    $this->paginate = [
+        'contain' => ['Students'], // Ensure this is correctly fetching associated data
+    ];
+    $finalResults = $this->paginate($this->Finalresults);
 
-        $this->set(compact('finalresults'));
-    }
+    $this->set(compact('finalResults'));
+}
+
 
     /**
      * View method
